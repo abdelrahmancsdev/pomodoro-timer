@@ -1,0 +1,135 @@
+// Variables
+$main-color: #ba4949;
+$dark-color: #a71010;
+$trans-color: rgb(255 255 255 / 10%);
+
+// Mixins
+@mixin flex($align, $justify) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: wrap;
+}
+@mixin grid($align, $justify) {
+  display: grid;
+  align-items: $align;
+  justify-items: $justify;
+}
+
+// Components
+.up {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23fff'%3E%3C!--! Font Awesome Pro 6.2.1 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M272.9 135.7C268.3 130.8 261.9 128 255.2 128C247.5 128.3 241.1 130.9 237.5 135.8l-87.25 96C143.8 238.9 142.2 249 146.1 257.7C149.9 266.4 158.5 272 167.1 272h56L224 360c0 13.25 10.75 24 24 24h16c13.25 0 23.1-10.75 23.1-24L287.1 272h56c9.531 0 18.16-5.656 22-14.38c3.811-8.75 2.092-18.91-4.377-25.91L272.9 135.7zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464z'/%3E%3C/svg%3E");
+}
+.down {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23fff'%3E%3C!--! Font Awesome Pro 6.2.1 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons  Inc. --%3E%3Cpath d='M344 240h-56L287.1 152c0-13.25-10.75-24-24-24h-16C234.7 128 223.1 138.8 223.1 152L224 240h-56c-9.531 0-18.16 5.656-22 14.38C142.2 263.1 143.9 273.3 150.4 280.3l88.75 96C243.7 381.2 250.1 384 256.8 384c7.781-.3125 13.25-2.875 17.75-7.844l87.25-96c6.406-7.031 8.031-17.19 4.188-25.88S353.5 240 344 240zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464z'/%3E%3C/svg%3E");
+}
+.up,
+.down {
+  width: 35px;
+  height: 35px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+// Global
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+
+// Main Style
+main {
+  @include flex(center, center);
+  min-height: 100vh;
+  background-color: $main-color;
+  color: #fff;
+  padding: 15px;
+  #app {
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    border: 5px solid $trans-color;
+    padding: 20px;
+    border-radius: 15px;
+    user-select: none;
+    #app-name {
+      font-family: "Merienda One", cursive;
+      text-align: center;
+    }
+    .app-options {
+      @include flex(center, center);
+      gap: 20px;
+      width: 100%;
+      #break-option,
+      #session-option {
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 10px;
+        .break-controls,
+        .session-controls {
+          @include flex(center, center);
+          gap: 10px;
+          font-size: 30px;
+          #break-length,
+          #session-length {
+            background-color: $trans-color;
+            padding: 0px 7px;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+    .timer {
+      @include flex(center, center);
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      margin-bottom: 5px;
+      .timer-area {
+        width: inherit;
+        background-color: $trans-color;
+        padding: 20px;
+        border-radius: 10px;
+        #time-left {
+          font-size: 60px;
+          @include flex(center, center);
+          &.end {
+            color: $dark-color;
+          }
+        }
+      }
+      .timer-controls {
+        @include flex(center, center);
+        gap: 10px;
+        button {
+          width: 100px;
+          height: 50px;
+          border: none;
+          color: $main-color;
+          font-size: 20px;
+          font-weight: bold;
+          border-radius: 5px;
+          cursor: pointer;
+          box-shadow: 0px 7px $dark-color;
+          transition: 0.1s linear;
+          text-transform: uppercase;
+          &:active,
+          &.stop {
+            box-shadow: 0px 0px $dark-color;
+            transform: translateY(7px);
+            border: 1px solid #777;
+          }
+        }
+      }
+    }
+  }
+}
